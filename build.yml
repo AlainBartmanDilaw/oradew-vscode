@@ -1,10 +1,10 @@
+resources:
+  containers:
+    - container: linux_container
+      image: jeffersonhealth/node-oracle-instantclient
+
 jobs:
   - job: Linux
-
-    resources:
-      containers:
-        - container: linux_container
-          image: jeffersonhealth/node-oracle-instantclient
 
     pool:
       name: Hosted Ubuntu 1604
