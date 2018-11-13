@@ -21,6 +21,7 @@ jobs:
       - task: Npm@1
         displayName: "Install dependencies"
         inputs:
+          command: install
           verbose: false
 
       - task: Npm@1
@@ -30,5 +31,9 @@ jobs:
           verbose: false
           customCommand: "run compile"
 
-      - script: npm run utest
-        displayName: "Run Unit tests"
+      - task: Npm@1
+        displayName: "Run unit tests"
+        inputs:
+          command: custom
+          verbose: false
+          customCommand: "run utest"
