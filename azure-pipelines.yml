@@ -25,4 +25,4 @@ steps:
     displayName: "Install and compile"
 
   - script: npm run utest
-    displayName: "Run unite tests"
+    displayName: "Run unit tests"

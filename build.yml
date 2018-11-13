@@ -1,33 +1,34 @@
-resources:
-  containers:
-    - container: linux_container
-      image: jeffersonhealth/node-oracle-instantclient
+jobs:
+  - job: Linux
 
-- job: Linux
-  pool:
-    name: Hosted Ubuntu 1604
-    demands: npm
+    resources:
+      containers:
+        - container: linux_container
+          image: jeffersonhealth/node-oracle-instantclient
 
-  container: linux_container
+    pool:
+      name: Hosted Ubuntu 1604
+      demands: npm
 
-  steps:
-    - task: NodeTool@0
-      displayName: 'Use Node 9.x'
-      inputs:
-        versionSpec: 9.x
+    container: linux_container
 
-    - task: Npm@1
-      displayName: 'Install dependencies'
-      inputs:
-        verbose: false
+    steps:
+      - task: NodeTool@0
+        displayName: "Use Node 9.x"
+        inputs:
+          versionSpec: 9.x
 
-    - task: Npm@1
-      displayName: 'Compile sources'
-      inputs:
-        command: custom
-        verbose: false
-        customCommand: 'run compile'
+      - task: Npm@1
+        displayName: "Install dependencies"
+        inputs:
+          verbose: false
 
-    - script: npm run utest
-      displayName: 'Run Unit tests'
+      - task: Npm@1
+        displayName: "Compile sources"
+        inputs:
+          command: custom
+          verbose: false
+          customCommand: "run compile"
 
+      - script: npm run utest
+        displayName: "Run Unit tests"
